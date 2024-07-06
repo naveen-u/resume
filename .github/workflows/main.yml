@@ -15,7 +15,7 @@ jobs:
           root_file: CV.tex
       - name: Release
         run: |
-          latestVer=$(gh release view --json name --jq .name 2>/dev/null)
+          latestVer=$(gh release view --json tagName --jq .tagName 2>/dev/null)
           latestDate=$(echo $latestVer | awk -F. '{print $1}')
           latestMinor=$(echo $latestVer | awk -F. '{print $2}')
           if test "$latestDate" = "$(date '+%Y%m%d')"
