@@ -12,7 +12,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: CV.tex
+          root_file: resume.tex
       - name: Release
         run: |
           latestVer=$(gh release view --json tagName --jq .tagName 2>/dev/null)
@@ -25,6 +25,6 @@ jobs:
           else
               newVer=$(echo $(date '+%Y%m%d').01)
           fi
-          gh release create $newVer CV.pdf
+          gh release create $newVer resume.pdf
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
