@@ -15,11 +15,14 @@ jobs:
           root_file: resume.tex
       - name: Release
         run: |
+          echo Starting release...
           latestVer=$(gh release view --json tagName --jq .tagName 2>/dev/null)
+          echo Latest available version is $latestVer
           latestDate=$(echo $latestVer | awk -F. '{print $1}')
-          latestMinor=$(echo $latestVer | awk -F. '{print $2}')
+          echo Latest available version date is $latestDate
           if test "$latestDate" = "$(date '+%Y%m%d')"
-          then
+          then  
+              latestMinor=$(echo $latestVer | awk -F. '{print $2}')
               newMinor=$(echo $(printf %02d $((latestMinor+1))))
               newVer=$(echo $latestDate.$newMinor)
           else
