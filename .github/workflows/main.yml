@@ -25,6 +25,7 @@ jobs:
           else
               newVer=$(echo $(date '+%Y%m%d').01)
           fi
+          echo Creating release with version $newVer...
           gh release create $newVer resume.pdf
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
