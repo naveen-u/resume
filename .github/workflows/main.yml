@@ -15,10 +15,10 @@ jobs:
           root_file: resume.tex
       - name: Release
         run: |
+          set +e
           echo Starting release...
-          gh release view --json tagName
-          echo Getting latest version...
           latestVer=$(gh release view --json tagName --jq .tagName 2>/dev/null)
+          set -e
           echo Latest available version is $latestVer
           latestDate=$(echo $latestVer | awk -F. '{print $1}')
           echo Latest available version date is $latestDate
